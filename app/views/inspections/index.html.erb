@@ -1,2 +1,18 @@
-<h1>Inspections#index</h1>
-<p>Find me in app/views/inspections/index.html.erb</p>
+<h1>Inspections</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Sheet url</th>
+    <th>Created by ID</th>
+    <th>Active</th>
+  </tr>
+  <% @inspections.each do |inspection| %> 
+    <tr>
+      <td> <%= inspection.title %> </td>
+      <td> <%= inspection.sheet_url_string %> </td>
+      <td> <%= inspection.created_by_id %> </td>
+      <td> <%= inspection.active %> </td>
+    </tr>
+  <% end %>
+</table>
