@@ -12,6 +12,9 @@ class InspectionsController < ApplicationController
 
     drive.authorization.fetch_access_token!
 
-    @files = drive.list_files
+    @files = drive.list_files(
+      q: "mimeType = 'application/vnd.google-apps.spreadsheet'",
+      fields: "files(id, name, mimeType, owners, webViewLink)"
+    )
   end
 end
