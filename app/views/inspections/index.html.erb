@@ -16,3 +16,18 @@
     </tr>
   <% end %>
 </table>
+
+<h4>Sheets accessible:</h4>
+
+<table>
+<tr>
+<th>File name</th>
+<th>File id</th>
+</tr>
+<% @files.files.each do |file| %> 
+  <tr>
+  <td> <%= file.name %> </td>
+  <td> <%= file.id %> </td>
+  </tr>
+<% end %>
+</table>
