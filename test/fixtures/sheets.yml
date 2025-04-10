@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  google_file_id: MyString
+  url: MyString
+  owner_emails: 
+
+two:
+  name: MyString
+  google_file_id: MyString
+  url: MyString
+  owner_emails: 
