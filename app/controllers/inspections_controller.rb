@@ -17,4 +17,8 @@ class InspectionsController < ApplicationController
       fields: "files(id, name, mimeType, owners, webViewLink)"
     )
   end
+
+  def new
+    @inspection = Inspection.new
+  end
 end
