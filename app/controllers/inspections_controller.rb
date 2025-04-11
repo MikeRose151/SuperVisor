@@ -5,11 +5,11 @@ class InspectionsController < ApplicationController
 
   def new
     @inspection = Inspection.new
-    @sheets_selection = Sheet.all.map { |sheet| "#{sheet.name} (#{sheet.google_file_id[0..7]}...)"}
+    @sheets = Sheet.all
   end
 
   def create
-    @inspection = Inspection.new(user_params)
+    @inspection = Inspection.new(inspection_params)
     if @inspection.save
       redirect_to inspections_path
     else
@@ -17,7 +17,7 @@ class InspectionsController < ApplicationController
     end
   end
 
-  def user_params
-    params.expect(inspection: [:title, :sheet_url_string, :active])
+  def inspection_params
+    params.require(:inspection).permit(:title, :sheet_id, :status)
   end
 end

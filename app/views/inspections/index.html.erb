@@ -12,9 +12,9 @@
   <% @inspections.each do |inspection| %> 
     <tr>
       <td> <%= inspection.title %> </td>
-      <td> <%= inspection.sheet_url_string %> </td>
-      <td> <%= inspection.created_by_id %> </td>
-      <td> <%= inspection.active %> </td>
+      <td> <%= inspection.sheet.google_file_id %> </td>
+      <td> <%= inspection.sheet.owner_emails.join(" ,") %> </td>
+      <td> <%= inspection.active? %> </td>
     </tr>
   <% end %>
 </table>

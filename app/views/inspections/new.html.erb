@@ -3,9 +3,9 @@ Create New Inspection
 <%= form_with model: @inspection do |form| %>
   <%= form.label :title %>
   <%= form.text_field :title %>
-  <%= form.label :sheet_url_string %>
-  <%= form.select :sheet_url_string, @sheets_selection %>
-  <%= form.label :active %>
-  <%= form.checkbox :active %>
+  <%= form.label :sheet_id, "Sheet" %>
+  <%= form.select :sheet_id, options_from_collection_for_select(@sheets, :id, :name_with_url), prompt: "Select a sheet"  %>
+  <%= form.label :status, "Active?" %>
+  <%= form.check_box :status, { :checked => true }, :active, :inactive %>
   <%= form.submit "Save" %>
 <% end %>
