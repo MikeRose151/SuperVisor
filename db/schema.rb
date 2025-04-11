@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_145949) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_11_180519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,9 +18,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_145949) do
     t.string "title"
     t.string "sheet_url_string"
     t.integer "created_by_id"
-    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
   end
 
   create_table "sheets", force: :cascade do |t|
