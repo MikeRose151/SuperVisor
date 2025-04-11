@@ -18,26 +18,3 @@
     </tr>
   <% end %>
 </table>
-
-<h4>Sheets that can be connected:</h4>
-
-<table>
-<tr>
-<th>File name</th>
-<th>File id</th>
-<th>Owner(s)</th>
-<th>Link</th>
-</tr>
-<% @files.files.each do |file| %> 
-  <tr>
-  <td> <%= file.name %> </td>
-  <td> <%= file.id %> </td>
-  <td> 
-    <% file.owners.each do |owner| %>
-      <%= owner.email_address %>
-    <% end %>
-  </td>
-  <td> <%= file.web_view_link %> </td>
-  </tr>
-<% end %>
-</table>

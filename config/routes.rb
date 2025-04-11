@@ -5,5 +5,11 @@ Rails.application.routes.draw do
 
   resources :inspections, only: [:index, :new, :create]
 
+  resources :sheets, only: [:index] do
+    collection do
+      post :sync_with_drive
+    end
+  end  
+
   root "inspections#index"
 end
