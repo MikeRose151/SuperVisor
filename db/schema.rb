@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_11_180519) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_11_185816) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
+  enable_extension "plpgsql"
 
   create_table "inspections", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_180519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
+    t.bigint "sheet_id", null: false
+    t.index ["sheet_id"], name: "index_inspections_on_sheet_id"
   end
 
   create_table "sheets", force: :cascade do |t|
@@ -31,4 +33,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_180519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "inspections", "sheets"
 end
