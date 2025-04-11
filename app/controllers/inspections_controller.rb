@@ -5,6 +5,7 @@ class InspectionsController < ApplicationController
 
   def new
     @inspection = Inspection.new
+    @sheets_selection = Sheet.all.map { |sheet| "#{sheet.name} (#{sheet.google_file_id[0..7]}...)"}
   end
 
   def create
