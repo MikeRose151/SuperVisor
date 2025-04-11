@@ -4,7 +4,7 @@ Create New Inspection
   <%= form.label :title %>
   <%= form.text_field :title %>
   <%= form.label :sheet_url_string %>
-  <%= form.select :sheet_url_string, ["123", "456", "789"] %>
+  <%= form.select :sheet_url_string, @sheets_selection %>
   <%= form.label :active %>
   <%= form.checkbox :active %>
   <%= form.submit "Save" %>
