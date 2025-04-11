@@ -5,22 +5,22 @@
 <p>This is a list of sheets that can be connected to SuperVisor. Share your sheets with <strong>supervisor-bot@supervisor-456117.iam.gserviceaccount.com</strong> to make them available and hit the sync button above.</p>
 
 <table>
-<tr>
-<th>Sheet name</th>
-<th>Sheet id</th>
-<th>Owner(s)</th>
-<th>Link</th>
-</tr>
-<% @sheets.each do |sheet| %> 
-  <tr>
-  <td> <%= sheet.name %> </td>
-  <td> <%= sheet.id %> </td>
-  <td> 
-    <% sheet.owner_emails.each do |owner_email| %>
-      <%= owner_email %>
+  <thead>
+    <tr>
+      <th>Sheet name</th>
+      <th>Sheet id</th>
+      <th>Owner(s)</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sheets.each do |sheet| %> 
+      <tr>
+        <td> <%= sheet.name %> </td>
+        <td> <%= sheet.id %> </td>
+        <td> <%= sheet.owner_emails.join(" ,") %> </td>
+        <td> <%= sheet.url %> </td>
+      </tr>
     <% end %>
-  </td>
-  <td> <%= sheet.url %> </td>
-  </tr>
-<% end %>
+  </tbody>
 </table>
