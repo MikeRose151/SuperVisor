@@ -9,7 +9,7 @@ class InspectionsController < ApplicationController
   end
 
   def create
-    @inspection = Inspection.new(user_params)
+    @inspection = Inspection.new(inspection_params)
     if @inspection.save
       redirect_to inspections_path
     else
@@ -17,7 +17,7 @@ class InspectionsController < ApplicationController
     end
   end
 
-  def user_params
+  def inspection_params
     params.expect(inspection: [:title, :sheet_url_string, :active])
   end
 end
