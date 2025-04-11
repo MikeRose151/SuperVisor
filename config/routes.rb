@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :sheets, only: [:index] do
     collection do
-      post :sync
+      post :sync_with_drive
     end
   end  
 

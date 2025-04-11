@@ -1,7 +1,8 @@
-<h1>Sheets#index</h1>
-<p>Find me in app/views/sheets/index.html.erb</p>
+<h1>Sheets</h1>
 
-<h4>Sheets that can be connected:</h4>
+<%= button_to 'Sync your Google Sheets', sync_with_drive_sheets_path, method: :post %>
+
+<p>This is a list of sheets that can be connected to SuperVisor. Share your sheets with <strong>supervisor-bot@supervisor-456117.iam.gserviceaccount.com</strong> to make them available and hit the sync button above.</p>
 
 <table>
 <tr>
@@ -10,16 +11,16 @@
 <th>Owner(s)</th>
 <th>Link</th>
 </tr>
-<% @sheets.files.each do |sheet| %> 
+<% @sheets.each do |sheet| %> 
   <tr>
   <td> <%= sheet.name %> </td>
   <td> <%= sheet.id %> </td>
   <td> 
-    <% sheet.owners.each do |owner| %>
-      <%= owner.email_address %>
+    <% sheet.owner_emails.each do |owner_email| %>
+      <%= owner_email %>
     <% end %>
   </td>
-  <td> <%= sheet.web_view_link %> </td>
+  <td> <%= sheet.url %> </td>
   </tr>
 <% end %>
 </table>
