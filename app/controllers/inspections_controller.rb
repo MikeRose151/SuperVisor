@@ -5,7 +5,7 @@ class InspectionsController < ApplicationController
 
   def new
     @inspection = Inspection.new
-    @sheets_selection = Sheet.all.map { |sheet| "#{sheet.name} (#{sheet.google_file_id[0..7]}...)"}
+    @sheets = Sheet.all
   end
 
   def create
@@ -18,6 +18,6 @@ class InspectionsController < ApplicationController
   end
 
   def inspection_params
-    params.expect(inspection: [:title, :sheet_url_string, :active])
+    params.require(:inspection).permit(:title, :sheet_id, :status)
   end
 end
