@@ -8,11 +8,7 @@ class GoogleSheetsService
 
   def self.new_client
     client = Google::Apis::SheetsV4::SheetsService.new
-    # TODO: move the following logic to a service as it's shared with google drive
-    client.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-      json_key_io: File.open(Rails.root.join("config", "credentials", "google_service_account.json")),
-      scope: "https://www.googleapis.com/auth/drive.readonly"
-    )
+    client.authorization = GoogleAuthService.auth(scope: GoogleAuthService::SHEETS_READONLY_SCOPE)
     client.authorization.fetch_access_token!
     client
   end
