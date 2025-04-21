@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_11_185816) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_21_183555) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_11_185816) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0, null: false
     t.bigint "sheet_id", null: false
+    t.string "range_to_check"
     t.index ["sheet_id"], name: "index_inspections_on_sheet_id"
   end
 

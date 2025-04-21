@@ -1,14 +1,15 @@
 class GoogleDriveService
+  def self.new_client
+    client = Google::Apis::DriveV3::DriveService.new
+    client.authorization = GoogleAuthService.auth(scope: GoogleAuthService::DRIVE_READONLY_SCOPE)
+    client.authorization.fetch_access_token! # TODO: check if this line is necessary
+    client
+  end
+
   def self.fetch_spreadsheets
-    drive = Google::Apis::DriveV3::DriveService.new
-    drive.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-      json_key_io: File.open(Rails.root.join("config", "credentials", "google_service_account.json")),
-      scope: "https://www.googleapis.com/auth/drive.readonly"
-    )
+    client = new_client
 
-    drive.authorization.fetch_access_token!
-
-    @sheets = drive.list_files(
+    @sheets = client.list_files(
       q: "mimeType = 'application/vnd.google-apps.spreadsheet'",
       fields: "files(id, name, mimeType, owners, webViewLink)"
     )
