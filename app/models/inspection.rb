@@ -7,4 +7,8 @@ class Inspection < ApplicationRecord
   # archived => corresponding Sheet no longer exists (e.g. deleted from google drive, no longer shared with SuperVisor) but user wants to preserve Inspection
 
   validates :title, presence: true
+
+  def blank_cells?
+    GoogleSheetsService.check_for_blank_cells(sheet.google_file_id, range_to_check)
+  end
 end
