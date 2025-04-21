@@ -7,13 +7,15 @@
     <th>Title</th>
     <th>Sheet url</th>
     <th>Created by ID</th>
+    <th>Range to check</th>
     <th>Active</th>
   </tr>
   <% @inspections.each do |inspection| %> 
     <tr>
       <td> <%= inspection.title %> </td>
-      <td> <%= inspection.sheet.google_file_id %> </td>
       <td> <%= inspection.sheet.owner_emails.join(" ,") %> </td>
+      <td> <%= inspection.sheet.google_file_id %> </td>
+      <td> <%= inspection.range_to_check %> </td>
       <td> <%= inspection.active? %> </td>
     </tr>
   <% end %>

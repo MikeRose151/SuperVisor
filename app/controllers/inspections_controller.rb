@@ -18,6 +18,6 @@ class InspectionsController < ApplicationController
   end
 
   def inspection_params
-    params.require(:inspection).permit(:title, :sheet_id, :status)
+    params.require(:inspection).permit(:title, :sheet_id, :range_to_check, :status)
   end
 end

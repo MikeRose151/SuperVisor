@@ -5,6 +5,8 @@ Create New Inspection
   <%= form.text_field :title %>
   <%= form.label :sheet_id, "Sheet" %>
   <%= form.select :sheet_id, options_from_collection_for_select(@sheets, :id, :name_with_url), prompt: "Select a sheet"  %>
+  <%= form.label :range_to_check %>
+  <%= form.text_field :range_to_check, placeholder: "e.g. Sheet1!A1:B4" %>
   <%= form.label :status, "Active?" %>
   <%= form.check_box :status, { :checked => true }, :active, :inactive %>
   <%= form.submit "Save" %>
