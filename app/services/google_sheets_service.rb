@@ -8,13 +8,13 @@ class GoogleSheetsService
   end
   
   def self.check_for_blank_cells(spreadsheet_id, range)
-    GoogleSheetsService.get_cell_values(spreadsheet_id, range).count == SheetRangeTool.cell_count(range)
+    GoogleSheetsService.get_cell_values_count(spreadsheet_id, range) != SheetRangeTool.cell_count(range)
   end
 
-  def self.get_cell_values(spreadsheet_id, range)
+  def self.get_cell_values_count(spreadsheet_id, range)
     client = GoogleSheetsService.new_client
     result = client.get_spreadsheet_values(spreadsheet_id, range) # spreadsheet_id = .google_file_id
-    result.values # returns a 2D array structure (grid)
+    result.values.flatten.count
   end
 
   # TODO:
