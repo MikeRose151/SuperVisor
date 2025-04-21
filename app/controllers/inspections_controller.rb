@@ -17,6 +17,8 @@ class InspectionsController < ApplicationController
     end
   end
 
+  private
+
   def inspection_params
     params.require(:inspection).permit(:title, :sheet_id, :range_to_check, :status)
   end
