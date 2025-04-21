@@ -1,3 +1,4 @@
+# TODO: convert this into a gem
 class SheetRangeTool
   def self.cell_count(range)
     # SheetRangeTool.cell_count("A1:D2")       # => 8
@@ -11,18 +12,21 @@ class SheetRangeTool
     cell_count = num_rows * num_columns
   end
 
-  def cell_to_row_and_column(cell)
-    cell.upcase.scan(/([A-Z]+)(\d+)/).flatten
-  end
-
-  def column_letters_to_number(letters)
-    letters.upcase.chars.reduce(0) { |sum, char| sum * 26 + (char.ord - 'A'.ord + 1) }
-  end
-  
   # SheetRangeTool.dimensions("B2:D5")       # => { rows: 4, cols: 3 }
   # SheetRangeTool.expand("C1:D2")           # => ["C1", "C2", "D1", "D2"]
   # SheetRangeTool.col_to_index("Z")         # => 25
   # SheetRangeTool.index_to_col(27)          # => "AB"
   # RangeHelper.to_indices("A1")             # => { row: 0, col: 0 }
-end
 
+  class << self
+    private
+    
+    def self.cell_to_row_and_column(cell)
+      cell.upcase.scan(/([A-Z]+)(\d+)/).flatten
+    end
+
+    def self.column_letters_to_number(letters)
+      letters.upcase.chars.reduce(0) { |sum, char| sum * 26 + (char.ord - 'A'.ord + 1) }
+    end
+  end
+end
