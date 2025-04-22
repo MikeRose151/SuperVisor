@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     collection do
       post :sync_with_drive
     end
-  end  
+  end
+
+  post "/slack/commands", to: "slack#commands"
 
   root "inspections#index"
 end
