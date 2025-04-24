@@ -2,9 +2,9 @@ class SlackController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def commands
-    client = Slack::Web::Client.new
+    slack_client = Slack::Web::Client.new
 
-    client.views_open(
+    slack_client.views_open(
       trigger_id: params[:trigger_id],
       view: {
         type: "modal",
