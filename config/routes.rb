@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  post "/slack/commands", to: "slack#commands"
+  post "/slack/trigger_inspection", to: "slack#trigger_inspection"
 
   root "inspections#index"
 end

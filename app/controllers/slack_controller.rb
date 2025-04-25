@@ -1,7 +1,7 @@
 class SlackController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def commands
+  def trigger_inspection
     @inspections = Inspection.all
     @sheets = Sheet.all
     modal_payload = render_to_string(template: "slack/modals/inspect_form", formats: [:json]).html_safe
