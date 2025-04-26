@@ -3,15 +3,15 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :inspections, only: [:index, :new, :create]
+  resources :inspections, only: [ :index, :new, :create ]
 
-  resources :sheets, only: [:index] do
+  resources :sheets, only: [ :index ] do
     collection do
       post :sync_with_drive
     end
   end
 
-  post "/slack/commands", to: "slack#commands"
+  post "/slack/trigger_inspection", to: "slack#trigger_inspection"
 
   root "inspections#index"
 end

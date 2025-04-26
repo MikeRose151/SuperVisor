@@ -1,6 +1,6 @@
 class Inspection < ApplicationRecord
   belongs_to :sheet
-  
+
   enum status: { active: 0, inactive: 1, archived: 2 }
   # active => Inspection is in use
   # inactive => Inspection is not in use (and its corresponding Sheet still exists)

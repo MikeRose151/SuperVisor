@@ -6,7 +6,7 @@ class GoogleSheetsService
     client.authorization.fetch_access_token!
     client
   end
-  
+
   def self.check_for_blank_cells(spreadsheet_id, range)
     GoogleSheetsService.get_cell_values_count(spreadsheet_id, range) != SheetRangeTool.cell_count(range)
   end

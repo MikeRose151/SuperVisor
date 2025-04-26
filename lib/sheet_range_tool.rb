@@ -20,13 +20,13 @@ class SheetRangeTool
 
   class << self
     private
-    
+
     def cell_to_row_and_column(cell)
       cell.upcase.scan(/([A-Z]+)(\d+)/).flatten
     end
 
     def column_letters_to_number(letters)
-      letters.upcase.chars.reduce(0) { |sum, char| sum * 26 + (char.ord - 'A'.ord + 1) }
+      letters.upcase.chars.reduce(0) { |sum, char| sum * 26 + (char.ord - "A".ord + 1) }
     end
   end
 end
