@@ -4,7 +4,6 @@ class SlackController < ApplicationController
   def trigger_inspection
     @inspections = Inspection.all
     @sheets = Sheet.all
-    modal_payload = render_to_string(template: "slack/modals/inspect_form", formats: [ :json ]).html_safe
 
     modal_payload = SlackModalBuilder.build(inspections: @inspections, sheets: @sheets)
 
