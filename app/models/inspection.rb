@@ -9,6 +9,6 @@ class Inspection < ApplicationRecord
   validates :title, presence: true
 
   def blank_cells?
-    GoogleSheetsService.check_for_blank_cells(sheet.google_file_id, range_to_check)
+    GoogleSheetsService.range_contains_blanks?(sheet.google_file_id, range_to_check)
   end
 end
