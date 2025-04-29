@@ -7,21 +7,22 @@ class SlackModalBuilder
       submit: { type: "plain_text", text: "Run inspection" },
       close: { type: "plain_text", text: "Cancel" },
       blocks: [
-        {
-          type: "input",
-          block_id: "sheet_block",
-          element: {
-            type: "static_select",
-            action_id: "sheet_input",
-            options: sheets.sort_by { |sheet| sheet.name.downcase }.map do |sheet|
-              {
-                text: { type: "plain_text", text: sheet.name },
-                value: sheet.id.to_s
-              }
-            end
-          },
-          label: { type: "plain_text", text: "Select sheet" }
-        },
+        # TODO: Implement a way to filter the inspections an optional sheet selection (though not sure how dynamic slack forms can be)
+        # {
+        #   type: "input",
+        #   block_id: "sheet_block",
+        #   element: {
+        #     type: "static_select",
+        #     action_id: "sheet_input",
+        #     options: sheets.sort_by { |sheet| sheet.name.downcase }.map do |sheet|
+        #       {
+        #         text: { type: "plain_text", text: sheet.name },
+        #         value: sheet.id.to_s
+        #       }
+        #     end
+        #   },
+        #   label: { type: "plain_text", text: "Select sheet" }
+        # },
         {
           type: "input",
           block_id: "inspection_block",
