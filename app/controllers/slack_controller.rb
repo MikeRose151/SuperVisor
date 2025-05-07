@@ -23,7 +23,7 @@ class SlackController < ApplicationController
 
   def interactions
     payload = JSON.parse(params[:payload])
-    inspection_id = payload["view"]["state"]["values"]["#{field}_block"]["#{field}_input"]["selected_option"]["value"]
+    inspection_id = payload["view"]["state"]["values"]["inspection_block"]["inspection_input"]["selected_option"]["value"]
     inspection = Inspection.find(inspection_id)
 
     message = inspection.blank_cells? ? "There are blank cells in range #{inspection.range_to_check} of #{inspection.sheet.name}!" : "There are no blank cells in #{inspection.range_to_check} of #{inspection.sheet.name}!"
