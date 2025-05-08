@@ -33,12 +33,10 @@ class SlackController < ApplicationController
                 end
       
       PostSlackMessageJob.perform_later(
-        channel_id: SlackChannelService.supervisor_inspections_channel_id(slack_client),
         message: message
       )
 
       head :ok
-      # TODO: handle cases where supervisor_inspections_channel_id is not valid (i.e. if #supervisor-inspections doesn't exist)
     else
       head :ok
     end
