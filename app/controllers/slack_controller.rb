@@ -1,20 +1,50 @@
 class SlackController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def trigger_inspection
-    @inspections = Inspection.all
-    @sheets = Sheet.all
-    modal_payload = render_to_string(template: "slack/modals/inspect_form", formats: [ :json ]).html_safe
+  def commands
+    case params[:command]
+    when "/triggerinspection"
+      @inspections = Inspection.all
+      @sheets = Sheet.all
 
-    modal_payload = SlackModalBuilder.build(inspections: @inspections, sheets: @sheets)
+      modal_payload = SlackModalBuilder.build(inspections: @inspections, sheets: @sheets)
 
-    slack_client = Slack::Web::Client.new
+      slack_client.views_open(
+        trigger_id: params[:trigger_id],
+        view: modal_payload
+      )
+      head :ok
+    else
+      head :ok
+    end
+  end
 
-    slack_client.views_open(
-      trigger_id: params[:trigger_id],
-      view: modal_payload
-    )
+  def interactions
+    payload = JSON.parse(params[:payload])
 
-    head :ok
+    if payload["type"] == "view_submission"
+      inspection_id = payload.dig("view", "state", "values", "inspection_block", "inspection_input", "selected_option", "value")
+      inspection = Inspection.find_by(id: inspection_id)
+
+      message = if inspection.blank_cells?
+        "There are blank cells in range #{inspection.range_to_check} of #{inspection.sheet.name}!"
+      else
+        "There are no blank cells in #{inspection.range_to_check} of #{inspection.sheet.name}!"
+      end
+
+      PostSlackMessageJob.perform_later(
+        message: message
+      )
+
+      head :ok
+    else
+      head :ok
+    end
+  end
+
+  private
+
+  def slack_client
+    @slack_client ||= Slack::Web::Client.new
   end
 end
