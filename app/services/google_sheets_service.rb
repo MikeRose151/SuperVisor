@@ -8,10 +8,10 @@ class GoogleSheetsService
   end
 
   def self.range_contains_blanks?(spreadsheet_id, range)
-    GoogleSheetsService.get_cell_values_count(spreadsheet_id, range) != SheetRangeTool.cell_count(range) ? true : false
+    GoogleSheetsService.count_non_blank_cells(spreadsheet_id, range) != SheetRangeTool.cell_count(range) ? true : false
   end
 
-  def self.get_cell_values_count(spreadsheet_id, range)
+  def self.count_non_blank_cells(spreadsheet_id, range)
     client = GoogleSheetsService.new_client
     result = client.get_spreadsheet_values(spreadsheet_id, range) # spreadsheet_id = .google_file_id
     Array(result.values).flatten.reject(&:blank?).count
