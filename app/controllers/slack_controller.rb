@@ -27,9 +27,9 @@ class SlackController < ApplicationController
       inspection = Inspection.find_by(id: inspection_id)
 
       message = if inspection.blank_cells?
-                  "There are blank cells in range #{inspection.range_to_check} of #{inspection.sheet.name}!"
+        "There are blank cells in range #{inspection.range_to_check} of #{inspection.sheet.name}!"
       else
-                  "There are no blank cells in #{inspection.range_to_check} of #{inspection.sheet.name}!"
+        "There are no blank cells in #{inspection.range_to_check} of #{inspection.sheet.name}!"
       end
 
       PostSlackMessageJob.perform_later(
