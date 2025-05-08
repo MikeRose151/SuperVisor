@@ -14,7 +14,7 @@ class GoogleSheetsService
   def self.get_cell_values_count(spreadsheet_id, range)
     client = GoogleSheetsService.new_client
     result = client.get_spreadsheet_values(spreadsheet_id, range) # spreadsheet_id = .google_file_id
-    result.values.flatten.count
+    Array(result.values).flatten.count
   end
 
   # TODO:
