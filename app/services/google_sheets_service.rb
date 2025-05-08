@@ -19,6 +19,6 @@ class GoogleSheetsService
 
   # TODO:
   # def self.fetch_sheet_names(spreadsheet)
-  #   # TODO: Consider adjusting language as a sheet is technically each tab within a spreadsheet
+  #   # Consider adjusting language as a sheet is technically each tab within a spreadsheet
   # end
 end
