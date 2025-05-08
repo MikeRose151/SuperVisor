@@ -2,14 +2,14 @@ class SlackChannelService
   def self.all_channels(slack_client)
     channels = []
     cursor = nil
-  
+
     loop do
       response = slack_client.conversations_list(limit: 100, cursor: cursor)
       channels.concat(response.channels)
       cursor = response.response_metadata&.next_cursor
       break if cursor.blank?
     end
-  
+
     channels
   end
 

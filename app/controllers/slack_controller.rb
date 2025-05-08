@@ -21,17 +21,17 @@ class SlackController < ApplicationController
 
   def interactions
     payload = JSON.parse(params[:payload])
-    
+
     if payload["type"] == "view_submission"
       inspection_id = payload.dig("view", "state", "values", "inspection_block", "inspection_input", "selected_option", "value")
       inspection = Inspection.find_by(id: inspection_id)
 
       message = if inspection.blank_cells?
                   "There are blank cells in range #{inspection.range_to_check} of #{inspection.sheet.name}!"
-                else
+      else
                   "There are no blank cells in #{inspection.range_to_check} of #{inspection.sheet.name}!"
-                end
-      
+      end
+
       PostSlackMessageJob.perform_later(
         message: message
       )
