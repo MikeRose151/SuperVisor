@@ -19,6 +19,7 @@
       <td> <%= inspection.sheet.google_file_id %> </td>
       <td> <%= inspection.range_to_check %> </td>
       <td> <%= inspection.active? %> </td>
+      <td> <%= link_to "Delete", inspection_path(inspection), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to permanently delete Inspection '#{inspection.title}' and the log history associated with it?"} %>
     </tr>
   <% end %>
 </table>

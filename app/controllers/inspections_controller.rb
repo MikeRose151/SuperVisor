@@ -17,6 +17,12 @@ class InspectionsController < ApplicationController
     end
   end
 
+  def destroy
+    @inspection = Inspection.find(params[:id])
+    @inspection.destroy
+    redirect_to inspections_path
+  end
+
   private
 
   def inspection_params
