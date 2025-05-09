@@ -23,6 +23,11 @@
   </head>
 
   <body>
+    <div class="navbar">
+      <strong>SuperVisor</strong>
+      <%= link_to "Inspections", inspections_path %>
+      <%= link_to "Sheets", sheets_path %>
+    </div>
     <%= yield %>
   </body>
 </html>
