@@ -1,6 +1,6 @@
 class InspectionsController < ApplicationController
   def index
-    @inspections = Inspection.all
+    @inspections = Inspection.order(:title)
   end
 
   def new
@@ -15,6 +15,12 @@ class InspectionsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def toggle_active
+    @inspection = Inspection.find(params[:id])
+    @inspection.active? ? @inspection.inactive! : @inspection.active!
+    redirect_to inspections_path
   end
 
   def destroy
