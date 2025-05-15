@@ -7,8 +7,8 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>Created by</th>
     <th>Sheet url</th>
-    <th>Created by ID</th>
     <th>Range to check</th>
     <th>Active</th>
   </tr>
@@ -18,7 +18,12 @@
       <td> <%= inspection.sheet.owner_emails.join(" ,") %> </td>
       <td> <%= inspection.sheet.google_file_id %> </td>
       <td> <%= inspection.range_to_check %> </td>
-      <td> <%= inspection.active? %> </td>
+      <td>
+        <%= form_with url: toggle_active_inspection_path(inspection), method: :patch, local: true do |form| %>
+          <%= form.check_box :status, { checked: inspection.active?, onchange: 'this.form.submit();' }, :active, :inactive %>
+        <% end %>
+      </td>
+      <td> <%= link_to "Delete", inspection_path(inspection), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to permanently delete Inspection '#{inspection.title}' and the log history associated with it?"} %>
     </tr>
   <% end %>
 </table>
